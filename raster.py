@@ -1,6 +1,6 @@
 
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 from parameters import stepSize, numnrn
 from init_neurons import neurons
 
@@ -39,6 +39,8 @@ def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivi
         ax1.set_title('BB Raster Plot')
         ax1.set_xlabel('Time (ms)')
         ax1.set_ylabel('Neurons Sorted by Group');
+        plt.show()
+
 
     # Reorders the rows of the connection matrix so as to match the sorted raster plot.
     # Then plots the new matrix.
@@ -53,11 +55,12 @@ def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivi
 
         # Plots pixel-plot of neuron connectivities.
         fig, ax_conn = plt.subplots(1, figsize=(12, 12))
-        connplot = ax_conn.imshow(reor_mat[:, :, 1], extent=(0, numnrn, 0, numnrn),
+        ax_conn.imshow(reor_mat[:, :, 1], extent=(0, numnrn, 0, numnrn),
                                   cmap='cividis')  # Generates pixel-like plot of connection strengths.
         ax_conn.grid(which='both', axis='both', color='black', linewidth=1)
         ax_conn.set_xticks(np.arange(0, numnrn, 1))  # Sets lines for axes, off of which the grid is based.
         ax_conn.set_yticks(np.arange(0, numnrn, 1))
         ax_conn.set_title('Reordered Neuron Connectivity Graphic', size=20)
         ax_conn.set_xlabel('Postsynaptic Neuron ID', size=12)
-        ax_conn.set_ylabel('(numnrn - Presynaptic Neuron ID)', size=12);
+        ax_conn.set_ylabel('(numnrn - Presynaptic Neuron ID)', size=12)
+        plt.show()
