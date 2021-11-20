@@ -4,7 +4,6 @@ from init_neurons import neurons
 
 
 def updateSpikeTime(t_ind):
-    global neuron
     tau = 10  # Time constant for exponential function in ms.
 
     skip_time = 20  # Time before spikes start being recorded (in ms).

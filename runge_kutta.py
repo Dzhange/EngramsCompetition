@@ -1,6 +1,6 @@
 import numpy as np
 from parameters import numEquations, stepSize
-import equations as eq
+from equations import equations
 from init_neurons import neurons
 
 
@@ -20,20 +20,20 @@ def RK4():
 
         # Calculates the k1 variables
         for ii in range(len(solns)):
-            k1[ii] = stepSize * eq.equations(solns, ii, Isyn, Idrive, nrn)
+            k1[ii] = stepSize * equations(solns, ii, Isyn, Idrive, nrn)
 
         # Calculates the k2 variables
         for ii in range(len(solns)):
-            k2[ii] = stepSize * eq.equations(solns + k1 / 2, ii, Isyn, Idrive,
+            k2[ii] = stepSize * equations(solns + k1 / 2, ii, Isyn, Idrive,
                                                nrn)  # important fix done here. solns must be advanced by k
             # for calculation of the next k variable.
         # Calculates the k3 variables
         for ii in range(len(solns)):
-            k3[ii] = stepSize * eq.equations(solns + k2 / 2, ii, Isyn, Idrive, nrn)
+            k3[ii] = stepSize * equations(solns + k2 / 2, ii, Isyn, Idrive, nrn)
 
             # Calculates the k4 variables
         for ii in range(len(solns)):
-            k4[ii] = stepSize * eq.equations(solns + k3, ii, Isyn, Idrive, nrn)
+            k4[ii] = stepSize * equations(solns + k3, ii, Isyn, Idrive, nrn)
 
         # Updates the general solution
         for ii in range(len(solns)):

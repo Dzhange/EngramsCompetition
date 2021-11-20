@@ -1,7 +1,7 @@
 
 import numpy as np
 import parameters as param
-import neuron as n
+from neuron import neuron
 import random as rd
 
 
@@ -21,7 +21,7 @@ def init_nrn(numnrn):
         return count
 
     for i in range(numnrn):
-        neurons = np.append(neurons, n.neuron())  # Intiallizes numnrn number of neurons
+        neurons = np.append(neurons, neuron())  # Initializes numnrn number of neurons
 
     # This for loop ensures that exactly numPV number of E neurons are changed to PV.
     for i in range(param.numPV):
