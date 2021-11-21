@@ -100,7 +100,7 @@ def init_nrn(numnrn):
             row[column_index] = conn  # Assigns the local connections.
         conn_Matrix[row_index] = row
 
-    # Changes connections based on proability p.
+    # Changes connections based on probability p.
     for row_index, row in enumerate(conn_Matrix):
         row_temp = row.copy()  # used to store changes while deleting connections from new_conn_list. VERY IMPORTANT TO USE .copy()
         # otherwise row will change when row_temp is changed. This is how assignment works.
