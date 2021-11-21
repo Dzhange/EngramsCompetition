@@ -24,8 +24,8 @@ class neuron:
         self.Idrive = 0
         self.color = ''  # Color of neuron for graphing.
         self.conn_in = []  # Connections coming in from other neurons. Sum is the in-degree of the neuron. Note, not tuple like self.connections.
-        # Format is 1D list of connection strengths, where list index is presynaptic neuron.
-        self.category = 'Excitatory'  # Labels the neuron type. Default is excitatory, can be chanegd to inhibitory.
+        # Format is 1D list of connection strengths, where list index is pre-synaptic neuron.
+        self.category = 'Excitatory'  # Labels the neuron type. Default is excitatory, can be changed to inhibitory.
         self.gsyn = 1  # Connection strength multiplier.
         self.pair_spiketimes = np.zeros(
             param.numnrn)  # Pair spike times for outgoing connections. Note that this only holds the most recent pair spiketime for each conn.

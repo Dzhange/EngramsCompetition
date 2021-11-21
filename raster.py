@@ -38,7 +38,7 @@ def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivi
 
         ax1.set_title('BB Raster Plot')
         ax1.set_xlabel('Time (ms)')
-        ax1.set_ylabel('Neurons Sorted by Group');
+        ax1.set_ylabel('Neurons Sorted by Group')
         plt.savefig("raster.png")
 
 

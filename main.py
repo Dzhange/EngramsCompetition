@@ -5,7 +5,8 @@ from update_spike_time import updateSpikeTime
 from update_synapses import updateSyn
 from raster import plot_conn_raster
 from runge_kutta import RK4
-
+from tqdm import tqdm # use tqdm to estimate total running time
+import argparse
 
 def zeroTempVars():  # Zeros all variables to prevent accidental accumulation of unwanted terms. Just a safety measure, good habit.
     # Note: Do not zero solutions, because they are used in calculating next solutions.
@@ -14,7 +15,7 @@ def zeroTempVars():  # Zeros all variables to prevent accidental accumulation of
         # simply assigned, the Isyn would not accumulate. But now it must be zeroed.
 
 def mainProgramLoop():
-    for t_ind in range(Ntimes):
+    for t_ind in tqdm(range(Ntimes)):
         # Records timing of spikes (in t/stepSize)
         updateSpikeTime(t_ind)
         # Updates the input synaptic current to be used in RK4
@@ -26,5 +27,9 @@ def mainProgramLoop():
     plot_conn_raster(0, nc_Matrix)
     return
 
-# Run Program
-mainProgramLoop()
+
+
+if __name__ == "__main__":
+    
+    # Run Program
+    mainProgramLoop()

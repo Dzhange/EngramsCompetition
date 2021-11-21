@@ -50,8 +50,13 @@ def init_nrn(numnrn):
         nrn.connectionWeights = [1] * numnrn  # Creates a list of all connection weights to other neurons at value 1.
 
         if nrn.category == 'Excitatory':
-            nrn.Idrive = round(rd.uniform(param.Idrive_E_min, param.Idrive_E_max),
-                               3)  # Random value between min and max rounded to 1 decimal places
+            if param.random_activate:
+                drive_scale = param.activate_strengthen_scale if rd.random() <= param.activate_rate else param.activate_weaken_scale
+                nrn.Idrive = drive_scale * round(rd.uniform(param.Idrive_E_min, param.Idrive_E_max),
+                                3)  # Random value between min and max rounded to 1 decimal places
+            else:
+                nrn.Idrive = round(rd.uniform(param.Idrive_E_min, param.Idrive_E_max),
+                                3)  # Random value between min and max rounded to 1 decimal places
             nrn.color = 'Blue'
 
         if nrn.category == 'PV+':
@@ -95,7 +100,7 @@ def init_nrn(numnrn):
             row[column_index] = conn  # Assigns the local connections.
         conn_Matrix[row_index] = row
 
-    # Changes connections based on proability p.
+    # Changes connections based on probability p.
     for row_index, row in enumerate(conn_Matrix):
         row_temp = row.copy()  # used to store changes while deleting connections from new_conn_list. VERY IMPORTANT TO USE .copy()
         # otherwise row will change when row_temp is changed. This is how assignment works.

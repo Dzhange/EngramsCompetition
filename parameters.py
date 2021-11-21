@@ -27,3 +27,10 @@ seed = 1 # The seed for generating random numbers/list indices. NOTE: defining a
 
 Idrive_E_min, Idrive_E_max = 0.1, 0.1 # Applied current range for excitatory neurons.
 Idrive_PV_min,Idrive_PV_max = -0.1, -0.1 # Applied current range for inhibitory PV+ neurons.
+
+random_activate = False # Randomly apply stronger current to some excitatory neurons and lower current to the rest
+activate_rate = 0.2 # The ratio of neurons applied with higher neurons at initialization
+activate_strengthen_scale = 1.5
+activate_weaken_scale = 0.6
+
+
