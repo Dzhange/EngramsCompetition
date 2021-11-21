@@ -1,4 +1,4 @@
 # Use config files to change parameters
-expt_name: "random"
+expt_name: "no_random"
 simLength: 200
-random_activate: True
+random_activate: False

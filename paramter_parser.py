@@ -51,8 +51,8 @@ class parameter_parser():
         
         self.cfg.random_activate = False # Randomly apply stronger current to some excitatory neurons and lower current to the rest
         self.cfg.activate_rate = 0.2 # The ratio of neurons applied with higher neurons at initialization
-        self.cfg.activate_strengthen_scale = 1.5
-        self.cfg.activate_weaken_scale = 0.6
+        self.cfg.activate_strengthen_scale = 2
+        self.cfg.activate_weaken_scale = 0.5
 
 
         #experiment configs
@@ -92,6 +92,11 @@ class parameter_parser():
             self.cfg.merge_from_file(self.cfg.config_file)
             
             
+        if self.cfg.expt_name == "time_now":
+            from datetime import datetime
+            now = datatime.now()
+            self.cfg.expt_name = now.strftime("M%m_D%d_Y%Y_H%H_M%M_S%S")
+
         self.cfg.expt_file_path = os.path.join(self.cfg.log_parent_dir, self.cfg.expt_name)        
         # make a second copy, sometimes the origin params file could be accidentally lost
     
@@ -100,16 +105,10 @@ class parameter_parser():
         shutil.copy(self.cfg.config_file, self.cfg.expt_file_path)
         self.gen_secondary_parameters()
 
+        
+
 
     def gen_secondary_parameters(self):
         # generate parameters that dependent on others
         self.cfg.tarray = list(np.arange(0,self.cfg.simLength,self.cfg.stepSize))
         self.cfg.Ntimes = len(self.cfg.tarray)
-
-        
-
-
-
-        
-
-

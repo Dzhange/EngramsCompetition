@@ -1,4 +1,4 @@
 # Use config files to change parameters
-expt_name: "random"
+expt_name: "time_now"
 simLength: 200
 random_activate: True
