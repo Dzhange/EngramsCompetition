@@ -1,9 +1,9 @@
 
 import numpy as np
-from parameters import stepSize
-from init_neurons import neurons
 
-def updateSyn(t_ind):  # Gives synaptic input to all neurons on connection list
+
+
+def updateSyn(params, neurons, t_ind):  # Gives synaptic input to all neurons on connection list
     # Includes changes in synaptic strengths. t_start is the time at which the presynaptic neuron's voltage breaches -20 mV.
     # Has been changed to normalize strength of inputs to a neuron by number of inputs. I.e sum of all inputs comes to w_max.
     t_temp = 0
@@ -21,6 +21,7 @@ def updateSyn(t_ind):  # Gives synaptic input to all neurons on connection list
     tau = 0.5  # Time constant for fast-acting receptors.
     tau_B = 50  # Time constant for GABA B receptors, slow-acting.
 
+    stepSize = params.stepSize
     for nrn in neurons:  # presynaptic neurons.
         if len(nrn.spikeTimes) > 0:  # To prevent errors of calling [-1] from an array without any entries. Can change to be l > 2, 3 ...
             t_temp = nrn.spikeTimes[-1]  # grabs time this neuron spikes at.

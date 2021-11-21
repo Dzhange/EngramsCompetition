@@ -1,17 +1,17 @@
 
 import numpy as np
-import parameters as param
+# import parameters as param
 from neuron import neuron
 import random as rd
 
-
 # initializes neurons and assigns ID, connections, weights, etc.
-def init_nrn(numnrn):
+def init_nrn(params):
     neurons = []  # List containing neuron objects
     nconn_Mat = [np.empty(3)]  # 2D matrix for storing new connections.
+    numnrn = params.numnrn
 
-    if param.RD_seed:  # When true, the simulation will be reproducable entirely (all connections, neuron assignments, initial coniditions).
-        rd.seed(param.seed)
+    if params.RD_seed:  # When true, the simulation will be reproducable entirely (all connections, neuron assignments, initial coniditions).
+        rd.seed(params.seed)
 
     def count_PV(neurons):  # A function for counting the number of SST neurons.
         count = 0
@@ -21,10 +21,10 @@ def init_nrn(numnrn):
         return count
 
     for i in range(numnrn):
-        neurons = np.append(neurons, neuron())  # Initializes numnrn number of neurons
+        neurons = np.append(neurons, neuron(params))  # Initializes numnrn number of neurons
 
     # This for loop ensures that exactly numPV number of E neurons are changed to PV.
-    for i in range(param.numPV):
+    for i in range(params.numPV):
         changed_to_PV = False  # Keeps loop running until excitatory neuron is found to change to PV neuron.
         while changed_to_PV == False:  # Loop mentioned above.
             nrn = rd.choice(neurons)  # grabs one neuron object at random (available for editing)
@@ -50,17 +50,17 @@ def init_nrn(numnrn):
         nrn.connectionWeights = [1] * numnrn  # Creates a list of all connection weights to other neurons at value 1.
 
         if nrn.category == 'Excitatory':
-            if param.random_activate:
-                drive_scale = param.activate_strengthen_scale if rd.random() <= param.activate_rate else param.activate_weaken_scale
-                nrn.Idrive = drive_scale * round(rd.uniform(param.Idrive_E_min, param.Idrive_E_max),
+            if params.random_activate:
+                drive_scale = params.activate_strengthen_scale if rd.random() <= params.activate_rate else params.activate_weaken_scale
+                nrn.Idrive = drive_scale * round(rd.uniform(params.Idrive_E_min, params.Idrive_E_max),
                                 3)  # Random value between min and max rounded to 1 decimal places
             else:
-                nrn.Idrive = round(rd.uniform(param.Idrive_E_min, param.Idrive_E_max),
+                nrn.Idrive = round(rd.uniform(params.Idrive_E_min, params.Idrive_E_max),
                                 3)  # Random value between min and max rounded to 1 decimal places
             nrn.color = 'Blue'
 
         if nrn.category == 'PV+':
-            nrn.Idrive = round(rd.uniform(param.Idrive_PV_min, param.Idrive_PV_max), 3)
+            nrn.Idrive = round(rd.uniform(params.Idrive_PV_min, params.Idrive_PV_max), 3)
             nrn.color = 'darkorange'
 
     conn_Matrix = np.zeros((numnrn,
@@ -72,7 +72,7 @@ def init_nrn(numnrn):
 
             if neurons[
                 row_index].category == 'Excitatory':  # Determines which connectivity percent to use based on neuron category.
-                conn_span = int(param.c_e * numnrn / 2)  # number of neurons to be connected on either side of a neuron.
+                conn_span = int(params.c_e * numnrn / 2)  # number of neurons to be connected on either side of a neuron.
 
                 # sets neurons at +- conn_span from diagonal to full connectivity.
                 if column_index >= row_index - conn_span and column_index <= row_index + conn_span:
@@ -92,7 +92,7 @@ def init_nrn(numnrn):
 
             elif neurons[row_index].category == 'SST' or neurons[
                 row_index].category == 'PV+':  # If the presynaptic neuron is inhibitory.
-                if rd.random() <= param.c_i and column_index != row_index:  # if a random between 0 and 1 is less than the connectivity percent.
+                if rd.random() <= params.c_i and column_index != row_index:  # if a random between 0 and 1 is less than the connectivity percent.
                     conn = 1
                 else:
                     conn = 0
@@ -106,22 +106,22 @@ def init_nrn(numnrn):
         # otherwise row will change when row_temp is changed. This is how assignment works.
         if neurons[
             row_index].category == 'Excitatory':  # Determines which connectivity percent to use based on neuron category.
-            conn_span = int(param.c_e * numnrn / 2)  # number of neurons to be connected on either side of a neuron.
-            p = param.p_e
+            conn_span = int(params.c_e * numnrn / 2)  # number of neurons to be connected on either side of a neuron.
+            p = params.p_e
         elif neurons[row_index].category == 'SST' or neurons[row_index].category == 'PV+':
-            conn_span = int(param.c_i * numnrn / 2)
-            p = param.p_i
+            conn_span = int(params.c_i * numnrn / 2)
+            p = params.p_i
 
         for column_index, conn in enumerate(row):
 
             if conn != 0:  # only for existing connections.
                 if rd.random() <= p:  # rd.random() selects random float between 0 and 1.
 
-                    if param.local_conn == True:  # Allows new local connections.
+                    if params.local_conn == True:  # Allows new local connections.
                         new_conn_list = np.append(np.arange(0, row_index, 1),
                                                   np.arange(row_index + 1, numnrn, 1))  # Creates list of
                         # all nrn IDs besides self.
-                    if param.local_conn == False:  # No new local connections.
+                    if params.local_conn == False:  # No new local connections.
                         # List of all nrns except local and self. Very gross and uses heaviside functions. May be simplifiable.
                         new_conn_list = np.append(np.arange(numnrn - numnrn * np.heaviside(row_index - conn_span - 1, 1)
                                                             + (row_index + conn_span - numnrn + 1) * np.heaviside(
@@ -175,6 +175,3 @@ def init_nrn(numnrn):
         # signal from neurons 0 and 1, and full signal from neurons 2 and 3.
 
     return neurons, nc_Matrix
-
-
-neurons, nc_Matrix = init_nrn(param.numnrn)  # initializes neurons and creates universal list.

@@ -1,11 +1,14 @@
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
-from parameters import stepSize, numnrn
-from init_neurons import neurons
+# from parameters import stepSize, numnrn
 
 
-def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivity matrix.
+def plot_conn_raster(params, neurons, start_time, nc_Matrix):  # Plots raster plot and connectivity matrix.
+    
+    stepSize, numnrn = params.stepSize, params.numnrn
+    
     plot_raster = True
     plot_connection_mat = True
 
@@ -38,8 +41,10 @@ def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivi
 
         ax1.set_title('BB Raster Plot')
         ax1.set_xlabel('Time (ms)')
-        ax1.set_ylabel('Neurons Sorted by Group')
-        plt.savefig("raster.png")
+        ax1.set_ylabel('Neurons Sorted by Group')        
+        
+        img_path = os.path.join(params.expt_file_path, "raster.png")
+        plt.savefig(img_path)
 
 
     # Reorders the rows of the connection matrix so as to match the sorted raster plot.
@@ -63,4 +68,6 @@ def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivi
         ax_conn.set_title('Reordered Neuron Connectivity Graphic', size=20)
         ax_conn.set_xlabel('Postsynaptic Neuron ID', size=12)
         ax_conn.set_ylabel('(numnrn - Presynaptic Neuron ID)', size=12)
-        plt.savefig("conn_mat.png")
+        
+        img_path = os.path.join(params.expt_file_path, "conn_mat.png")
+        plt.savefig(img_path)
