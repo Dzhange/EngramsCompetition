@@ -39,7 +39,7 @@ def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivi
         ax1.set_title('BB Raster Plot')
         ax1.set_xlabel('Time (ms)')
         ax1.set_ylabel('Neurons Sorted by Group');
-        plt.show()
+        plt.savefig("raster.png")
 
 
     # Reorders the rows of the connection matrix so as to match the sorted raster plot.
@@ -63,4 +63,4 @@ def plot_conn_raster(start_time, nc_Matrix):  # Plots raster plot and connectivi
         ax_conn.set_title('Reordered Neuron Connectivity Graphic', size=20)
         ax_conn.set_xlabel('Postsynaptic Neuron ID', size=12)
         ax_conn.set_ylabel('(numnrn - Presynaptic Neuron ID)', size=12)
-        plt.show()
+        plt.savefig("conn_mat.png")
