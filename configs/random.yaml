@@ -1,0 +1,4 @@
+# Use config files to change parameters
+expt_name: "my_expt_name"
+simLength: 20
+random_activate: True
