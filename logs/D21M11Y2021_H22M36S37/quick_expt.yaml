@@ -1,0 +1,13 @@
+# Use config files to change parameters
+expt_name: "time_now"
+simLength: 1000
+random_activate: True
+w_EE: 0.05
+activate_strengthen_scale: 3.0
+activate_weaken_scale: 0.3
+
+w_II: 0.05
+w_IE: 0.3
+
+w_II_B: 0.0
+w_IE_B: 0.0
