@@ -89,6 +89,7 @@ class parameter_parser():
     def load_cfg(self, config_file=None):
         
         if config_file != None:
+            self.cfg.config_file = config_file
             self.cfg.merge_from_file(config_file)
         else:
             # First merger from cmdline
@@ -108,7 +109,6 @@ class parameter_parser():
 
         self.cfg.expt_file_path = os.path.join(self.cfg.log_parent_dir, self.cfg.expt_name)        
         # make a second copy, sometimes the origin params file could be accidentally lost
-    
         if not os.path.exists(self.cfg.expt_file_path):
             os.mkdir(str(self.cfg.expt_file_path))
         shutil.copy(self.cfg.config_file, self.cfg.expt_file_path)
