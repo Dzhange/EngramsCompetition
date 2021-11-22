@@ -27,8 +27,7 @@ def updateSyn(params, neurons, t_ind):  # Gives synaptic input to all neurons on
             t_temp = nrn.spikeTimes[-1]  # grabs time this neuron spikes at.
 
             for conn in nrn.connections:  # Gives all postsynaptic neurons Isyn corrspondping to their voltage.
-                V = neurons[int(conn[0])].solutions[
-                    3]  # Voltage of postsynaptic neuron. Note conn[1] is the connection strength and conn[0] is the ID.
+                V = neurons[int(conn[0])].solutions[3]  # Voltage of postsynaptic neuron. Note conn[1] is the connection strength and conn[0] is the ID.
                 Isyn = 0
 
                 if nrn.category == 'SST' or nrn.category == 'PV+':  # Handles GABA A and B receptors in postsyn  neurons.
