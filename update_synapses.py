@@ -7,19 +7,19 @@ def updateSyn(params, neurons, t_ind):  # Gives synaptic input to all neurons on
     # Includes changes in synaptic strengths. t_start is the time at which the presynaptic neuron's voltage breaches -20 mV.
     # Has been changed to normalize strength of inputs to a neuron by number of inputs. I.e sum of all inputs comes to w_max.
     t_temp = 0
-
+    
     # AMPA connections
-    w_EE = 0.15
-    w_EI = 0.15
+    w_EE = params.w_EE
+    w_EI = params.w_EI
     # GABA A connections
-    w_II = 0.15
-    w_IE = 0.15
+    w_II = params.w_II
+    w_IE = params.w_IE
     # GABA B connections
-    w_II_B = 0.05
-    w_IE_B = 0.05
+    w_II_B = params.w_II_B
+    w_IE_B = params.w_IE_B
 
-    tau = 0.5  # Time constant for fast-acting receptors.
-    tau_B = 50  # Time constant for GABA B receptors, slow-acting.
+    tau = params.tau  # Time constant for fast-acting receptors.
+    tau_B = params.tau_B  # Time constant for GABA B receptors, slow-acting.
 
     stepSize = params.stepSize
     for nrn in neurons:  # presynaptic neurons.

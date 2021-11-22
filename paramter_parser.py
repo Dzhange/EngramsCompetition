@@ -60,6 +60,19 @@ class parameter_parser():
         self.cfg.config_parent_dir = "./configs"
         self.cfg.expt_name = "expt"
 
+        # AMPA connections
+        self.cfg.w_EE = 0.15
+        self.cfg.w_EI = 0.15
+        # GABA A connections
+        self.cfg.w_II = 0.15
+        self.cfg.w_IE = 0.15
+        # GABA B connections
+        self.cfg.w_II_B = 0.05
+        self.cfg.w_IE_B = 0.05
+        self.cfg.tau = 0.5  # Time constant for fast-acting receptors.
+        self.cfg.tau_B = 50  # Time constant for GABA B receptors, slow-acting.
+
+
     def check_cfg(self):
         pass
 
