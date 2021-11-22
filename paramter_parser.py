@@ -51,10 +51,10 @@ class parameter_parser():
         
         self.cfg.random_activate = False # Randomly apply stronger current to some excitatory neurons and lower current to the rest
         self.cfg.activate_rate = 0.2 # The ratio of neurons applied with higher neurons at initialization
-        self.cfg.activate_strengthen_scale = 2
-        self.cfg.activate_weaken_scale = 0.5
+        self.cfg.activate_strengthen_scale = 1.5
+        self.cfg.activate_weaken_scale = 0.6
 
-
+        
         #experiment configs
         self.cfg.log_parent_dir = "./logs"
         self.cfg.config_parent_dir = "./configs"
@@ -63,26 +63,19 @@ class parameter_parser():
     def check_cfg(self):
         pass
 
-    def merge_from_cmdline(self):
-        
+    def merge_from_cmdline(self):        
         """
         Merge some usually changed setting from comand line
         """
         parser = argparse.ArgumentParser()
         parser.add_argument('--config', '-c', type=str, default='None', help="Choose a config file")
-                
-        cmd = vars(parser.parse_args())  # use as dict
-                
+        cmd = vars(parser.parse_args())  # use as dict                
         return cmd
         
 
-    def load_cfg(self):
-        
-        
+    def load_cfg(self):                
         # First merger from cmdline
-        cmd = self.merge_from_cmdline()
-        
-        
+        cmd = self.merge_from_cmdline()                
         # merge local file, cmd>file
         if cmd['config'] != 'None':            
             if os.path.exists(cmd['config']): # full path
@@ -91,11 +84,10 @@ class parameter_parser():
                 self.cfg.config_file = os.path.join(self.cfg.config_parent_dir, cmd['config'])
             self.cfg.merge_from_file(self.cfg.config_file)
             
-            
         if self.cfg.expt_name == "time_now":
             from datetime import datetime
-            now = datatime.now()
-            self.cfg.expt_name = now.strftime("M%m_D%d_Y%Y_H%H_M%M_S%S")
+            now = datetime.now()
+            self.cfg.expt_name = now.strftime("D%dM%mY%Y_H%HM%MS%S")
 
         self.cfg.expt_file_path = os.path.join(self.cfg.log_parent_dir, self.cfg.expt_name)        
         # make a second copy, sometimes the origin params file could be accidentally lost
@@ -104,10 +96,7 @@ class parameter_parser():
             os.mkdir(str(self.cfg.expt_file_path))
         shutil.copy(self.cfg.config_file, self.cfg.expt_file_path)
         self.gen_secondary_parameters()
-
         
-
-
     def gen_secondary_parameters(self):
         # generate parameters that dependent on others
         self.cfg.tarray = list(np.arange(0,self.cfg.simLength,self.cfg.stepSize))

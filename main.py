@@ -36,7 +36,7 @@ def mainProgramLoop(params, neurons, nc_Matrix):
 if __name__ == "__main__":
     
     parser = parameter_parser()
-    params = parser.get_cfg()        
+    params = parser.get_cfg()
     
     neurons, nc_Matrix = init_nrn(params)
 

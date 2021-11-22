@@ -51,13 +51,20 @@ def init_nrn(params):
 
         if nrn.category == 'Excitatory':
             if params.random_activate:
-                drive_scale = params.activate_strengthen_scale if rd.random() <= params.activate_rate else params.activate_weaken_scale
+                if rd.random() <= params.activate_rate:
+                    nrn.color = 'Red'
+                    drive_scale = params.activate_strengthen_scale  
+                else:
+                    nrn.color = 'Blue'
+                    drive_scale = params.activate_weaken_scale
+                    
                 nrn.Idrive = drive_scale * round(rd.uniform(params.Idrive_E_min, params.Idrive_E_max),
                                 3)  # Random value between min and max rounded to 1 decimal places
+                
             else:
                 nrn.Idrive = round(rd.uniform(params.Idrive_E_min, params.Idrive_E_max),
                                 3)  # Random value between min and max rounded to 1 decimal places
-            nrn.color = 'Blue'
+                nrn.color = 'Blue'
 
         if nrn.category == 'PV+':
             nrn.Idrive = round(rd.uniform(params.Idrive_PV_min, params.Idrive_PV_max), 3)
