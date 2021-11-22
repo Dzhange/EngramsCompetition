@@ -11,9 +11,9 @@ import argparse
 
 class parameter_parser():
     
-    def __init__(self):
+    def __init__(self, config_file=None):
         self.set_default_cfg()
-        self.load_cfg()
+        self.load_cfg(config_file)
         self.check_cfg()
     
     def get_cfg(self):
@@ -86,16 +86,20 @@ class parameter_parser():
         return cmd
         
 
-    def load_cfg(self):                
-        # First merger from cmdline
-        cmd = self.merge_from_cmdline()                
-        # merge local file, cmd>file
-        if cmd['config'] != 'None':            
-            if os.path.exists(cmd['config']): # full path
-                self.cfg.config_file = cmd['config']
-            else: #only file name
-                self.cfg.config_file = os.path.join(self.cfg.config_parent_dir, cmd['config'])
-            self.cfg.merge_from_file(self.cfg.config_file)
+    def load_cfg(self, config_file=None):
+        
+        if config_file != None:
+            self.cfg.merge_from_file(config_file)
+        else:
+            # First merger from cmdline
+            cmd = self.merge_from_cmdline()                
+            # merge local file, cmd>file
+            if cmd['config'] != 'None':            
+                if os.path.exists(cmd['config']): # full path
+                    self.cfg.config_file = cmd['config']
+                else: #only file name
+                    self.cfg.config_file = os.path.join(self.cfg.config_parent_dir, cmd['config'])
+                self.cfg.merge_from_file(self.cfg.config_file)
             
         if self.cfg.expt_name == "time_now":
             from datetime import datetime
