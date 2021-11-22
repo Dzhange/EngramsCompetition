@@ -43,7 +43,7 @@ def plot_conn_raster(params, neurons, start_time, nc_Matrix):  # Plots raster pl
         ax1.set_xlabel('Time (ms)')
         ax1.set_ylabel('Neurons Sorted by Group')        
         
-        img_path = os.path.join(params.expt_file_path, "raster.png")
+        img_path = os.path.join(params.expt_file_path, "{}_raster.png".format(params.expt_name))
         plt.savefig(img_path)
 
 
@@ -69,5 +69,5 @@ def plot_conn_raster(params, neurons, start_time, nc_Matrix):  # Plots raster pl
         ax_conn.set_xlabel('Postsynaptic Neuron ID', size=12)
         ax_conn.set_ylabel('(numnrn - Presynaptic Neuron ID)', size=12)
         
-        img_path = os.path.join(params.expt_file_path, "conn_mat.png")
+        img_path = os.path.join(params.expt_file_path, "{}_conn_mat.png".format(params.expt_name))
         plt.savefig(img_path)
