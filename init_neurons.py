@@ -54,6 +54,7 @@ def init_nrn(params):
                 nrn.ex_amp = params.ex_amp
                 nrn.ex_freq = params.ex_freq
                 nrn.ex_phase = rd.choice([0, np.pi])
+                nrn.color = 'Red'
             else:
                 if params.random_activate:
                     if rd.random() <= params.activate_rate:
