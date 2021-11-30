@@ -72,9 +72,9 @@ class parameter_parser():
         self.cfg.tau = 0.5  # Time constant for fast-acting receptors.
         self.cfg.tau_B = 50  # Time constant for GABA B receptors, slow-acting.
         
-        self.use_trigo = True
-        self.ex_amp = 0.1
-        self.ex_freq = 500        
+        self.cfg.use_trigo = True
+        self.cfg.ex_amp = 0.1
+        self.cfg.ex_freq = 1/500
 
 
     def check_cfg(self):
