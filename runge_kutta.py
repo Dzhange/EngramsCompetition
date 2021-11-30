@@ -1,11 +1,12 @@
+import random
 import numpy as np
-from parameters import numEquations, stepSize
+# from parameters import numEquations, stepSize
 from equations import equations
-from init_neurons import neurons
 
 
-def RK4():
+def RK4(params, neurons):
 
+    numEquations, stepSize = params.numEquations, params.stepSize
     for nrn in neurons:
 
         solns = nrn.solutions

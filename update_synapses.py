@@ -1,33 +1,33 @@
 
 import numpy as np
-from parameters import stepSize
-from init_neurons import neurons
 
-def updateSyn(t_ind):  # Gives synaptic input to all neurons on connection list
+
+
+def updateSyn(params, neurons, t_ind):  # Gives synaptic input to all neurons on connection list
     # Includes changes in synaptic strengths. t_start is the time at which the presynaptic neuron's voltage breaches -20 mV.
     # Has been changed to normalize strength of inputs to a neuron by number of inputs. I.e sum of all inputs comes to w_max.
     t_temp = 0
-
+    
     # AMPA connections
-    w_EE = 0.15
-    w_EI = 0.15
+    w_EE = params.w_EE
+    w_EI = params.w_EI
     # GABA A connections
-    w_II = 0.15
-    w_IE = 0.15
+    w_II = params.w_II
+    w_IE = params.w_IE
     # GABA B connections
-    w_II_B = 0.05
-    w_IE_B = 0.05
+    w_II_B = params.w_II_B
+    w_IE_B = params.w_IE_B
 
-    tau = 0.5  # Time constant for fast-acting receptors.
-    tau_B = 50  # Time constant for GABA B receptors, slow-acting.
+    tau = params.tau  # Time constant for fast-acting receptors.
+    tau_B = params.tau_B  # Time constant for GABA B receptors, slow-acting.
 
+    stepSize = params.stepSize
     for nrn in neurons:  # presynaptic neurons.
         if len(nrn.spikeTimes) > 0:  # To prevent errors of calling [-1] from an array without any entries. Can change to be l > 2, 3 ...
             t_temp = nrn.spikeTimes[-1]  # grabs time this neuron spikes at.
 
             for conn in nrn.connections:  # Gives all postsynaptic neurons Isyn corrspondping to their voltage.
-                V = neurons[int(conn[0])].solutions[
-                    3]  # Voltage of postsynaptic neuron. Note conn[1] is the connection strength and conn[0] is the ID.
+                V = neurons[int(conn[0])].solutions[3]  # Voltage of postsynaptic neuron. Note conn[1] is the connection strength and conn[0] is the ID.
                 Isyn = 0
 
                 if nrn.category == 'SST' or nrn.category == 'PV+':  # Handles GABA A and B receptors in postsyn  neurons.
