@@ -26,3 +26,7 @@ def mainProgramLoop():
 
     plot_conn_raster(0, nc_Matrix)
     return
+
+
+mainProgramLoop()
+
