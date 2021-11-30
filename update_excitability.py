@@ -1,6 +1,6 @@
 import numpy as np
 
-def updateExitability(params, neurons, t_ind):
+def updateExcitability(params, neurons, t_ind):
     
     for nrn in neurons:
         if nrn.category == 'Excitatory':
