@@ -7,7 +7,7 @@ from raster import plot_conn_raster
 from runge_kutta import RK4
 
 from paramter_parser import parameter_parser
-from update_excitability import *
+from update_engrams import *
 from tqdm import tqdm # use tqdm to estimate total running time
 import argparse
 
@@ -24,6 +24,7 @@ def mainProgramLoop(params, neurons, nc_Matrix):
 
         if params.use_trigo:
             updateExcitability(params, neurons, t_ind)
+            applyEngramCurrent(params, neurons, t_ind)
         # Records timing of spikes (in t/stepSize)
         updateSpikeTime(params, neurons, t_ind)
         # Updates the input synaptic current to be used in RK4
