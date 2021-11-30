@@ -6,8 +6,9 @@ from update_synapses import updateSyn
 from raster import plot_conn_raster
 from runge_kutta import RK4
 
-from paramter_parser import parameter_parser
+
 from update_engrams import *
+from parameter_parser import *
 from tqdm import tqdm # use tqdm to estimate total running time
 import argparse
 
