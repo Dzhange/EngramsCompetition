@@ -1,7 +1,7 @@
 import numpy as np
 
-from parameters import stepSize, numnrn
-from init_neurons import neurons
+# from parameters import stepSize, numnrn
+# from init_neurons import neurons
 
 import os
 import matplotlib.pyplot as plt

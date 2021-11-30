@@ -18,8 +18,6 @@ def zeroTempVars(neurons):  # Zeros all variables to prevent accidental accumula
         # simply assigned, the Isyn would not accumulate. But now it must be zeroed.
 
 
-
-
 def mainProgramLoop(params, neurons, nc_Matrix):
 
     for t_ind in tqdm(range(params.Ntimes)):

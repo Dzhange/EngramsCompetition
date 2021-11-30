@@ -46,5 +46,4 @@ class neuron:
         ## for exitablity
         self.ex_amp = None # exitability amplitude
         self.ex_phase = None # exitability phase
-        self.ex_freq = None # exitability frequency
-        self.exitablity = None # exitability
+        self.ex_freq = None # exitability frequency        
