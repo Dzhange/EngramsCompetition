@@ -57,15 +57,12 @@ def init_nrn(params):
                 else:
                     nrn.color = 'Blue'
                     drive_scale = params.activate_weaken_scale
-                    
                 nrn.Idrive = drive_scale * round(rd.uniform(params.Idrive_E_min, params.Idrive_E_max),
                                 3)  # Random value between min and max rounded to 1 decimal places
-                
             else:
                 nrn.Idrive = round(rd.uniform(params.Idrive_E_min, params.Idrive_E_max),
                                 3)  # Random value between min and max rounded to 1 decimal places
                 nrn.color = 'Blue'
-
         if nrn.category == 'PV+':
             nrn.Idrive = round(rd.uniform(params.Idrive_PV_min, params.Idrive_PV_max), 3)
             nrn.color = 'darkorange'
