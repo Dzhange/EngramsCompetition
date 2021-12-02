@@ -6,8 +6,9 @@ from update_synapses import updateSyn
 from raster import plot_conn_raster
 from runge_kutta import RK4
 
-from paramter_parser import parameter_parser
 
+from update_engrams import *
+from parameter_parser import *
 from tqdm import tqdm # use tqdm to estimate total running time
 import argparse
 
@@ -17,9 +18,14 @@ def zeroTempVars(neurons):  # Zeros all variables to prevent accidental accumula
         nrn.Input_syn = 0  # Zeroed because ISyn must be added to account for input from multiple neurons. If Isyn was
         # simply assigned, the Isyn would not accumulate. But now it must be zeroed.
 
+
 def mainProgramLoop(params, neurons, nc_Matrix):
 
     for t_ind in tqdm(range(params.Ntimes)):
+
+        if params.use_trigo:
+            updateExcitability(params, neurons, t_ind)
+            applyEngramCurrent(params, neurons, t_ind)
         # Records timing of spikes (in t/stepSize)
         updateSpikeTime(params, neurons, t_ind)
         # Updates the input synaptic current to be used in RK4

@@ -29,6 +29,11 @@ class parameter_parser():
         self.cfg.stepSize = 0.1
         self.cfg.simLength = 200
         
+        ## Engram Current params
+        self.cfg.eng_num = 2
+        self.cfg.eng_starts = [100, 500]
+        self.cfg.eng_ends = [200, 600]
+        self.cfg.eng_amps = [0.2, 0.2]
         
         self.cfg.spikeThreshold = 5 # Sets the voltage(mV) at which a spike is recorded.
         
@@ -71,6 +76,12 @@ class parameter_parser():
         self.cfg.w_IE_B = 0.05
         self.cfg.tau = 0.5  # Time constant for fast-acting receptors.
         self.cfg.tau_B = 50  # Time constant for GABA B receptors, slow-acting.
+        
+        ##
+        self.cfg.use_trigo = True
+        self.cfg.ex_amp = 0.1
+        self.cfg.ex_freq = 1/500
+        
 
 
     def check_cfg(self):
@@ -89,6 +100,7 @@ class parameter_parser():
     def load_cfg(self, config_file=None):
         
         if config_file != None:
+            self.cfg.config_file = config_file
             self.cfg.merge_from_file(config_file)
         else:
             # First merger from cmdline
@@ -108,7 +120,6 @@ class parameter_parser():
 
         self.cfg.expt_file_path = os.path.join(self.cfg.log_parent_dir, self.cfg.expt_name)        
         # make a second copy, sometimes the origin params file could be accidentally lost
-    
         if not os.path.exists(self.cfg.expt_file_path):
             os.mkdir(str(self.cfg.expt_file_path))
         shutil.copy(self.cfg.config_file, self.cfg.expt_file_path)
