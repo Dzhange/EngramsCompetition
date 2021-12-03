@@ -3,7 +3,7 @@ from init_neurons import init_nrn
 # import parameters as param
 from update_spike_time import updateSpikeTime
 from update_synapses import updateSyn
-from raster import plot_conn_raster
+from raster import plot_conn_raster, apply_freq_plot
 from runge_kutta import RK4
 
 
@@ -34,7 +34,8 @@ def mainProgramLoop(params, neurons, nc_Matrix):
         RK4(params, neurons)
         zeroTempVars(neurons)  # Resets temporary variables like Isyn
 
-    plot_conn_raster(params, neurons, 0, nc_Matrix)
+    apply_freq_plot(params, neurons, nc_Matrix)
+    # plot_conn_raster(params, neurons, nc_Matrix)
     return
 
 
