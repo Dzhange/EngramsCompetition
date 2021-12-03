@@ -42,3 +42,8 @@ class neuron:
         self.i_current_hist = np.array(
             [[0, time] for time in range(params.simLength)])  # Net inhibitory current to this neuron
         # every ms. [ [net current, time(ms)] , ...]
+
+        ## for exitablity
+        self.ex_amp = None # exitability amplitude
+        self.ex_phase = None # exitability phase
+        self.ex_freq = None # exitability frequency        
