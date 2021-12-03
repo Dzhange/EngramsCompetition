@@ -5,6 +5,7 @@ import numpy as np
 
 import os
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import vlines
 # from parameters import stepSize, numnrn
 
 
@@ -41,7 +42,7 @@ def plot_conn_raster(params, neurons, start_time, nc_Matrix):  # Plots raster pl
 
             ax1.scatter((spikeTimes_toplot), index_plot_list, c=color,
                         s=2)  # c controls nrn dot color, s controls dot size.
-
+                
         ax1.set_title('BB Raster Plot')
         ax1.set_xlabel('Time (ms)')
         ax1.set_ylabel('Neurons Sorted by Group')        
