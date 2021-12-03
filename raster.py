@@ -104,7 +104,7 @@ def apply_freq_plot(params, neurons, nc_Matrix): # Runs frequency calculation an
         if nrn.category == 'Excitatory':
             nrn.color = 'Blue'
     
-    freq_threshold = 20 #Threshold of neuron frequency to be considered part of an engram (in Hz). 
+    freq_threshold = 5 #Threshold of neuron frequency to be considered part of an engram (in Hz). 
     
     eng_color_list = ['Green', 'Red']
     overlap_color_list = ['purple']
@@ -113,12 +113,13 @@ def apply_freq_plot(params, neurons, nc_Matrix): # Runs frequency calculation an
         
         neurons = frequency(params, neurons, params.eng_starts[eng_id], params.eng_ends[eng_id])
         for nrn in neurons:
-            if nrn.category == 'Excitatory' and nrn.frequency > freq_threshold:
-                curr_color = nrn.color
-                if eng_id >= 1:
-                    if curr_color == eng_color_list[eng_id-1]:
+            if nrn.category == 'Excitatory' and nrn.frequency > freq_threshold:                
+                if eng_id >= 1:                    
+                    if nrn.color == eng_color_list[eng_id-1]:
                         nrn.color = overlap_color_list[eng_id-1]
                     else:
-                        nrn.color = overlap_color_list[eng_id]    
+                        nrn.color = eng_color_list[eng_id]
+                else:
+                    nrn.color = eng_color_list[eng_id]
 
     plot_conn_raster(params, neurons, nc_Matrix)
