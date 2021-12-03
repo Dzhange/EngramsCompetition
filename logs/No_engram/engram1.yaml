@@ -1,8 +1,7 @@
-expt_name: "Back to 50 neurons + engrams"
+expt_name: "No_engram"
 ex_amp: 0.2
 seed: 100
 base: -0.2
-numnrn: 50
 
 w_EE: 0.05
 w_II: 0.1

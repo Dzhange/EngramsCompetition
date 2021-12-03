@@ -1,4 +1,4 @@
-expt_name: "Back to 50 neurons + engrams"
+expt_name: "Back to 50 neurons"
 ex_amp: 0.2
 seed: 100
 base: -0.2
