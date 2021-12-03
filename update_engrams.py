@@ -11,7 +11,7 @@ def applyEngramCurrent(params, neurons, t_ind):
     assert params.eng_num == len(params.eng_amps)
 
     for eng_id in range(params.eng_num):
-        if params.eng_starts[eng_id] <= t_ind < params.eng_ends[eng_id]:            
+        if params.eng_starts[eng_id] <= t_ind < params.eng_ends[eng_id]:
             for nrn in neurons:
                 if nrn.category == 'Excitatory':
                     nrn.Idrive = nrn.Idrive + params.eng_amps[eng_id]
