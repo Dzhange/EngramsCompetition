@@ -1,6 +1,7 @@
-expt_name: "engram1 + engram2 + 2_cycles + I_stim=0.5 + lower_wIE"
-ex_amp: 0.4
+expt_name: "dummy"
+ex_amp: 0.2
 seed: 100
+base: -0.5
 
 w_EE: 0.05
 w_II: 0.1

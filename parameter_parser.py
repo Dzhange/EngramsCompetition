@@ -78,7 +78,7 @@ class parameter_parser():
         self.cfg.tau_B = 50  # Time constant for GABA B receptors, slow-acting.
         
         ##
-        self.cfg.num_cycles = 2
+        self.cfg.num_cycles = 1
         self.cfg.base = -0.2
         self.cfg.use_trigo = True
         self.cfg.ex_amp = 0.1        
