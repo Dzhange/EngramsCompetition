@@ -118,15 +118,16 @@ def apply_freq_plot(params, neurons, nc_Matrix): # Runs frequency calculation an
     eng_color_list = ['Green', 'Red']
     overlap_color_list = ['purple']
 
-    for eng_id in range(params.eng_num):
-        
+    for eng_id in range(params.eng_num):    
         neurons = frequency(params, neurons, params.eng_starts[eng_id], params.eng_ends[eng_id])
         for nrn in neurons:
-            if nrn.category == 'Excitatory' and nrn.frequency > freq_threshold:                
-                if eng_id >= 1:                    
+            if nrn.category == 'Excitatory' and nrn.frequency > freq_threshold:
+                if eng_id > 0:
                     if nrn.color == eng_color_list[eng_id-1]:
                         nrn.color = overlap_color_list[eng_id-1]
                     else:
-                        nrn.color = overlap_color_list[0]
+                        nrn.color = eng_color_list[eng_id]
+                else:
+                    nrn.color = eng_color_list[eng_id]
 
     plot_conn_raster(params, neurons, nc_Matrix)
