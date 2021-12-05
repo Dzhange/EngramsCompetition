@@ -84,6 +84,8 @@ class parameter_parser():
         self.cfg.ex_amp = 0.1
         self.cfg.ex_phases = [0, np.pi]
         
+        self.cfg.eng_color_list = ['purple', 'orange']
+        self.cfg.overlap_color_list = ['green']
 
 
     def check_cfg(self):

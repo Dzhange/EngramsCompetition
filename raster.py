@@ -57,6 +57,14 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
         ax2.set_xlabel('Time (ms)')
         ax2.set_ylabel('Neuron Instrinsic $I_{drive}$')
 
+        eng_color_list = params.eng_color_list
+        overlap_color_list = params.overlap_color_list
+
+        for eng_id in range(params.eng_num):    
+            
+            plt.axvline(x=params.eng_starts[eng_id]*stepSize, color=eng_color_list[eng_id])
+            plt.axvline(x=params.eng_ends[eng_id]*stepSize, color=eng_color_list[eng_id])
+
         img_path = os.path.join(params.expt_file_path, "{}_raster.png".format(params.expt_name))
         plt.savefig(img_path)
 
@@ -115,8 +123,11 @@ def apply_freq_plot(params, neurons, nc_Matrix): # Runs frequency calculation an
     
     freq_threshold = 5 #Threshold of neuron frequency to be considered part of an engram (in Hz). 
     
-    eng_color_list = ['purple', 'orange']
-    overlap_color_list = ['green']
+    # eng_color_list = ['purple', 'orange']
+    # overlap_color_list = ['green']
+
+    eng_color_list = params.eng_color_list
+    overlap_color_list = params.overlap_color_list
 
     for eng_id in range(params.eng_num):    
         neurons = frequency(params, neurons, params.eng_starts[eng_id], params.eng_ends[eng_id])
