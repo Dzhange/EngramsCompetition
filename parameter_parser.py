@@ -27,7 +27,7 @@ class parameter_parser():
         # It is important to leave numEquations and stepSize here, as they affect the integration.
         self.cfg.numEquations = 4
         self.cfg.stepSize = 0.1
-        self.cfg.simLength = 1000
+        self.cfg.simLength = 500
         
         ## Engram Current params
         self.cfg.eng_num = 2
@@ -81,7 +81,8 @@ class parameter_parser():
         self.cfg.num_cycles = 1
         self.cfg.base = -0.2
         self.cfg.use_trigo = True
-        self.cfg.ex_amp = 0.1        
+        self.cfg.ex_amp = 0.1
+        self.cfg.ex_phases = [0, np.pi]
         
 
 

@@ -25,7 +25,7 @@ def mainProgramLoop(params, neurons, nc_Matrix):
 
         if params.use_trigo:
             updateExcitability(params, neurons, t_ind)
-            applyEngramCurrent(params, neurons, t_ind)
+            #applyEngramCurrent(params, neurons, t_ind)
         # Records timing of spikes (in t/stepSize)
         updateSpikeTime(params, neurons, t_ind)
         # Updates the input synaptic current to be used in RK4

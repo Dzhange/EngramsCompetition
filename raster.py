@@ -27,7 +27,7 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
     neuron_list = list_i + list_e  # Adds the two lists such that inhibitory neurons come first and excitory second.
 
     if plot_raster:  # Plots raster plot of neuron spikes. Ordered with inhibitory on the bottom, followed by sorted E neurons.
-        fig, ax1 = plt.subplots(1, figsize=(20, 5))
+        fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(20, 10), sharex=True)
         start = start_time / stepSize  # time to start plotting from.
 
         for index, nrn in enumerate(neuron_list):
@@ -46,8 +46,17 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
                 
         ax1.set_title('BB Raster Plot')
         ax1.set_xlabel('Time (ms)')
-        ax1.set_ylabel('Neurons Sorted by Group')        
-        
+        ax1.set_ylabel('Neurons Sorted by Group')
+
+        for phase in params.ex_phases:
+            x = np.linspace(0, params.simLength, int(params.simLength/params.stepSize))
+            y = params.ex_amp * np.sin(phase + 2 * np.pi * params.ex_freq * x) + params.base
+            ax2.plot(x, y)
+
+        ax2.set_title('Neuron Excitability')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Neuron Instrinsic $I_{drive}$')
+
         img_path = os.path.join(params.expt_file_path, "{}_raster.png".format(params.expt_name))
         plt.savefig(img_path)
 
@@ -119,4 +128,5 @@ def apply_freq_plot(params, neurons, nc_Matrix): # Runs frequency calculation an
                         nrn.color = overlap_color_list[eng_id-1]
                     else:
                         nrn.color = overlap_color_list[0]
+
     plot_conn_raster(params, neurons, nc_Matrix)

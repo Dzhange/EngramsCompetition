@@ -53,7 +53,7 @@ def init_nrn(params):
             if params.use_trigo:            
                 nrn.ex_amp = params.ex_amp
                 nrn.ex_freq = params.ex_freq
-                nrn.ex_phase = rd.choice([0, np.pi])
+                nrn.ex_phase = rd.choice(params.ex_phases)
                 nrn.color = 'Red'
             else:
                 if params.random_activate:
