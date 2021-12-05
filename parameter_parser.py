@@ -27,7 +27,7 @@ class parameter_parser():
         # It is important to leave numEquations and stepSize here, as they affect the integration.
         self.cfg.numEquations = 4
         self.cfg.stepSize = 0.1
-        self.cfg.simLength = 500
+        self.cfg.simLength = 1000
         
         ## Engram Current params
         self.cfg.eng_num = 2
@@ -83,6 +83,8 @@ class parameter_parser():
         self.cfg.use_trigo = True
         self.cfg.ex_amp = 0.1
         self.cfg.ex_phases = [0, np.pi]
+
+        self.cfg.prob_engrams = [0.5, 0.5]
         
         self.cfg.eng_color_list = ['purple', 'orange']
         self.cfg.overlap_color_list = ['green']

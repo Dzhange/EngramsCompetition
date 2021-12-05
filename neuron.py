@@ -43,7 +43,10 @@ class neuron:
             [[0, time] for time in range(params.simLength)])  # Net inhibitory current to this neuron
         # every ms. [ [net current, time(ms)] , ...]
 
-        ## for exitablity
+        ## for excitablity
         self.ex_amp = None # exitability amplitude
         self.ex_phase = None # exitability phase
-        self.ex_freq = None # exitability frequency        
+        self.ex_freq = None # exitability frequency
+
+        ## For engram excitability
+        self.use_engram = []
