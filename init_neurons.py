@@ -54,7 +54,7 @@ def init_nrn(params):
                 nrn.ex_amp = params.ex_amp
                 nrn.ex_freq = params.ex_freq
                 nrn.ex_phase = rd.choice(params.ex_phases)
-                nrn.color = 'Red'
+                nrn.color = 'blue'
             else:
                 if params.random_activate:
                     if rd.random() <= params.activate_rate:
@@ -72,7 +72,7 @@ def init_nrn(params):
                     nrn.color = 'Blue'
         if nrn.category == 'PV+':
             nrn.Idrive = round(rd.uniform(params.Idrive_PV_min, params.Idrive_PV_max), 3)
-            nrn.color = 'darkorange'
+            nrn.color = 'red'
 
         
 
