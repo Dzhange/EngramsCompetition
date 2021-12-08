@@ -1,14 +1,14 @@
-expt_name: "Fig3_Only_Engram2"
+expt_name: "Fig3_Only_Engram1"
 ex_amp: 0.3
 seed: 100
 base: -0.1
 numnrn: 50
 simLength: 500
 
-eng_num: 2
-eng_amps: [0.5, 0.5]
-eng_starts: [100, 350]
-eng_ends: [200, 450]
+eng_num: 1
+eng_amps: [0.5]
+eng_starts: [100]
+eng_ends: [200]
 Idrive_PV_max: 0.0
 
 prob_engrams: [1.0, 0.0]

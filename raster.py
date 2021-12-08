@@ -18,7 +18,7 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
     plot_connection_mat = True
 
     list_i, list_e = [], []
-    for nrn in neurons:  # Seperates neuron IDs into a list of inhibtory and excitory.
+    for nrn in neurons:  # Separates neuron IDs into a list of inhibitory and excitatory.
         if nrn.category == 'SST' or nrn.category == 'PV+':
             list_i.append(nrn)  # Appends full nrn object (not just the ID) to make sorting by gsyn easier.
         if nrn.category == 'Excitatory':
@@ -27,8 +27,7 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
     neuron_list = list_i + list_e  # Adds the two lists such that inhibitory neurons come first and excitory second.
 
     if plot_raster:  # Plots raster plot of neuron spikes. Ordered with inhibitory on the bottom, followed by sorted E neurons.
-        # TODO: fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(20, 10), sharex=True)
-        fig, ax1 = plt.subplots(1, figsize=(20, 5))
+        fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(20, 10), sharex=True)
         start = start_time / stepSize  # time to start plotting from.
 
         for index, nrn in enumerate(neuron_list):
@@ -45,27 +44,26 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
             ax1.scatter((spikeTimes_toplot), index_plot_list, c=color,
                         s=2)  # c controls nrn dot color, s controls dot size.
 
-        ax1.set_title('Winner-Takes-All (WTA) - Engram Selection')
+        ax1.set_title('Engram 2 Stimulus Active')
         ax1.set_xlabel('Time (ms)')
         ax1.set_ylabel('Neurons Sorted by Group')
 
-        # TODO:
-        # for phase in params.ex_phases:
-        #     x = np.linspace(0, params.simLength, int(params.simLength/params.stepSize))
-        #     y = params.ex_amp * np.sin(phase + 2 * np.pi * params.ex_freq * x) + params.base
-        #     ax2.plot(x, y)
-        #
-        # ax2.set_title('Neuron Excitability')
-        # ax2.set_xlabel('Time (ms)')
-        # ax2.set_ylabel('Neuron Instrinsic $I_{drive}$')
-        #
-        # eng_color_list = params.eng_color_list
-        # overlap_color_list = params.overlap_color_list
-        #
-        # for eng_id in range(params.eng_num):
-        #
-        #     plt.axvline(x=params.eng_starts[eng_id]*stepSize, color=eng_color_list[eng_id])
-        #     plt.axvline(x=params.eng_ends[eng_id]*stepSize, color=eng_color_list[eng_id])
+        for i in range(len(params.ex_phases)):
+            x = np.linspace(0, params.simLength, int(params.simLength/params.stepSize))
+            y = params.ex_amp * np.sin(params.ex_phases[i] + 2 * np.pi * params.ex_freq * x) + params.base
+            ax2.plot(x, y, color=params.eng_color_list[i])
+
+        ax2.set_title('Neuron Excitability')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Neuron Intrinsic $I_{drive}$')
+
+        eng_color_list = params.eng_color_list
+        overlap_color_list = params.overlap_color_list
+
+        for eng_id in range(params.eng_num):
+            if params.eng_amps[eng_id] > 0.0:
+                plt.axvline(x=params.eng_starts[eng_id], color=eng_color_list[eng_id])
+                plt.axvline(x=params.eng_ends[eng_id], color=eng_color_list[eng_id])
 
         img_path = os.path.join(params.expt_file_path, "{}_raster.png".format(params.expt_name))
         plt.savefig(img_path)

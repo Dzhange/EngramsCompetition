@@ -1,11 +1,11 @@
-expt_name: "Selective_Activation_Fig1"
+expt_name: "Fig1_Random"
 simLength: 500
 
 use_trigo: False
 
 random_activate: True
 activate_rate: 0.2
-activate_strengthen_scale: 6.0
+activate_strengthen_scale: 1.0
 activate_weaken_scale: 1.0
 
 Idrive_E_max: 0.2
