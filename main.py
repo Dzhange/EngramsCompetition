@@ -34,8 +34,8 @@ def mainProgramLoop(params, neurons, nc_Matrix):
         RK4(params, neurons)
         zeroTempVars(neurons)  # Resets temporary variables like Isyn
 
-    apply_freq_plot(params, neurons, nc_Matrix)
-    # plot_conn_raster(params, neurons, nc_Matrix)
+    # apply_freq_plot(params, neurons, nc_Matrix)
+    plot_conn_raster(params, neurons, nc_Matrix)
     return
 
 

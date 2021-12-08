@@ -61,7 +61,7 @@ def init_nrn(params):
             else:
                 if params.random_activate:
                     if rd.random() <= params.activate_rate:
-                        nrn.color = 'Red'
+                        nrn.color = 'olive'
                         drive_scale = params.activate_strengthen_scale  
                     else:
                         nrn.color = 'Blue'
