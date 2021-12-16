@@ -5,6 +5,7 @@ import numpy as np
 
 import os
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 from matplotlib.pyplot import vlines
 # from parameters import stepSize, numnrn
 
@@ -26,8 +27,21 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
 
     neuron_list = list_i + list_e  # Adds the two lists such that inhibitory neurons come first and excitory second.
 
+    # Define legend attributes
+    custom_lines = [Line2D([0], [0], color='purple', lw=4),
+                    Line2D([0], [0], color='orange', lw=4),
+                    Line2D([0], [0], color='green', lw=4),
+                    Line2D([0], [0], color='blue', lw=4),
+                    Line2D([0], [0], color='red', lw=4)]
+
+    # TODO: Uncomment for custom_lines_fig1 = [Line2D([0], [0], color='olive', lw=4),
+    #                     Line2D([0], [0], color='blue', lw=4),
+    #                     Line2D([0], [0], color='red', lw=4)]
+
     if plot_raster:  # Plots raster plot of neuron spikes. Ordered with inhibitory on the bottom, followed by sorted E neurons.
         fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(20, 10), sharex=True)
+        # TODO: Uncomment for fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(20, 5), sharex=True)
+
         start = start_time / stepSize  # time to start plotting from.
 
         for index, nrn in enumerate(neuron_list):
@@ -42,11 +56,13 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
             color = nrn.color  # Color of spikes plotted for this neuron on raster plot.
 
             ax1.scatter((spikeTimes_toplot), index_plot_list, c=color,
-                        s=2)  # c controls nrn dot color, s controls dot size.
+                        s=10)  # c controls nrn dot color, s controls dot size.
 
-        ax1.set_title('Engram 2 Stimulus Active')
+        ax1.set_title('No Engram Stimuli Active')
         ax1.set_xlabel('Time (ms)')
         ax1.set_ylabel('Neurons Sorted by Group')
+        # TODO: Uncomment for initial - ax1.legend(custom_lines_fig1, ['Winners', 'Losers', 'Inhibitory'], loc='upper left')
+        ax1.legend(custom_lines, ['engram 1', 'engram 2', 'engram 1&2', 'non-engram', 'inhibitory'], loc='upper left')
 
         for i in range(len(params.ex_phases)):
             x = np.linspace(0, params.simLength, int(params.simLength/params.stepSize))

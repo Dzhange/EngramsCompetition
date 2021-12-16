@@ -55,6 +55,7 @@ def init_nrn(params):
                 nrn.ex_amp = params.ex_amp
                 nrn.ex_freq = params.ex_freq
                 nrn.ex_phase = rd.choice(params.ex_phases)
+                # nrn.ex_phase = 2*np.pi*rd.uniform(0, 1)
                 nrn.color = 'blue'
                 # Randomly assign engram inclusion to each neuron
                 nrn.use_engram = np.random.choice([True, False], 2, p=params.prob_engrams)

@@ -1,4 +1,4 @@
-expt_name: "Fig4_Test_Distant"
+expt_name: "Fig4_Both_Active_Close_Subset_assignment"
 ex_amp: 0.3
 seed: 100
 base: -0.1
@@ -7,11 +7,11 @@ simLength: 500
 
 eng_num: 2
 eng_amps: [0.5, 0.5]
-eng_starts: [100, 350]
-eng_ends: [200, 450]
+eng_starts: [50, 150]
+eng_ends: [175, 275]
 Idrive_PV_max: 0.0
 
-prob_engrams: [1.0, 0.0]
+prob_engrams: [0.5, 0.5]
 
 w_EE: 0.15
 w_II: 0.1
