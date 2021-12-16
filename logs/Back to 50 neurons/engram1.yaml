@@ -1,0 +1,11 @@
+expt_name: "Back to 50 neurons"
+ex_amp: 0.2
+seed: 100
+base: -0.2
+numnrn: 50
+
+w_EE: 0.05
+w_II: 0.1
+w_IE: 0.25
+w_II_B: 0.0
+w_IE_B: 0.0

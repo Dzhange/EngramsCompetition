@@ -48,13 +48,16 @@ def init_nrn(params):
         nrn.solutions = [rd.random(), rd.random(), rd.random(), rd.uniform(-55,
                                                                            -20)]  # Initial conditions of each neuron. Initial voltage randomly assigned between -55 and -20 mV.
         nrn.connectionWeights = [1] * numnrn  # Creates a list of all connection weights to other neurons at value 1.
-        
+
+
         if nrn.category == 'Excitatory':
             if params.use_trigo:            
                 nrn.ex_amp = params.ex_amp
                 nrn.ex_freq = params.ex_freq
-                nrn.ex_phase = rd.choice([0, np.pi])
-                nrn.color = 'Red'
+                nrn.ex_phase = rd.choice(params.ex_phases)
+                nrn.color = 'blue'
+                # Randomly assign engram inclusion to each neuron
+                nrn.use_engram = np.random.choice([True, False], 2, p=params.prob_engrams)
             else:
                 if params.random_activate:
                     if rd.random() <= params.activate_rate:
@@ -70,12 +73,11 @@ def init_nrn(params):
                     nrn.Idrive = round(rd.uniform(params.Idrive_E_min, params.Idrive_E_max),
                                     3)  # Random value between min and max rounded to 1 decimal places
                     nrn.color = 'Blue'
-
         if nrn.category == 'PV+':
             nrn.Idrive = round(rd.uniform(params.Idrive_PV_min, params.Idrive_PV_max), 3)
-            nrn.color = 'darkorange'
+            nrn.color = 'red'
 
-        
+
 
     conn_Matrix = np.zeros((numnrn,
                             numnrn))  # initializes matrix of zeros with numnrn x numnrn size. Row = nrn ID, Column = connected nrn ID.

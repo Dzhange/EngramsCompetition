@@ -27,17 +27,17 @@ class parameter_parser():
         # It is important to leave numEquations and stepSize here, as they affect the integration.
         self.cfg.numEquations = 4
         self.cfg.stepSize = 0.1
-        self.cfg.simLength = 200
+        self.cfg.simLength = 1000
         
         ## Engram Current params
         self.cfg.eng_num = 2
-        self.cfg.eng_starts = [100, 500]
-        self.cfg.eng_ends = [200, 600]
-        self.cfg.eng_amps = [0.2, 0.2]
+        self.cfg.eng_starts = [100, 450]
+        self.cfg.eng_ends = [200, 550]
+        self.cfg.eng_amps = [0.5, 0.5]
         
         self.cfg.spikeThreshold = 5 # Sets the voltage(mV) at which a spike is recorded.
         
-        self.cfg.numnrn = 50 # Number of neurons in the model.
+        self.cfg.numnrn = 30 # Number of neurons in the model.
         self.cfg.numPV = 10 # Number of SST neurons to be forced into the model.
         
         self.cfg.c_e, self.cfg.c_i = 0.1, 0.5 # Percent connectivity. Excitatory, Inhibitory.
@@ -78,10 +78,16 @@ class parameter_parser():
         self.cfg.tau_B = 50  # Time constant for GABA B receptors, slow-acting.
         
         ##
+        self.cfg.num_cycles = 1
+        self.cfg.base = -0.2
         self.cfg.use_trigo = True
         self.cfg.ex_amp = 0.1
-        self.cfg.ex_freq = 1/500
+        self.cfg.ex_phases = [0, np.pi]
+
+        self.cfg.prob_engrams = [0.5, 0.5]
         
+        self.cfg.eng_color_list = ['purple', 'orange']
+        self.cfg.overlap_color_list = ['green']
 
 
     def check_cfg(self):
@@ -129,3 +135,4 @@ class parameter_parser():
         # generate parameters that dependent on others
         self.cfg.tarray = list(np.arange(0,self.cfg.simLength,self.cfg.stepSize))
         self.cfg.Ntimes = len(self.cfg.tarray)
+        self.cfg.ex_freq = self.cfg.num_cycles/self.cfg.simLength

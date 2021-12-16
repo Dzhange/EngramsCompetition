@@ -1,0 +1,9 @@
+expt_name: "new_seed_no_engram"
+ex_amp: 0.5
+seed: 100
+
+w_EE: 0.05
+w_II: 0.1
+w_IE: 0.3
+w_II_B: 0.0
+w_IE_B: 0.0
