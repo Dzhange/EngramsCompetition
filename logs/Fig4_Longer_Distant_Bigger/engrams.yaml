@@ -1,4 +1,4 @@
-expt_name: "Fig4_Longer_Distant_Bigger_Prob=0.5"
+expt_name: "Fig4_Longer_Distant_Bigger"
 ex_amp: 0.3
 seed: 100
 base: -0.1
@@ -8,11 +8,11 @@ simLength: 1600
 
 eng_num: 2
 eng_amps: [0.5, 0.5]
-eng_starts: [300, 450]
-eng_ends: [400, 550]
+eng_starts: [300, 1100]
+eng_ends: [400, 1200]
 Idrive_PV_max: 0.0
 
-prob_engrams: [0.5, 0.5]
+prob_engrams: [1.0, 0.0]
 
 w_EE: 0.15
 w_II: 0.1
