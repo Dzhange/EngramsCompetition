@@ -5,13 +5,14 @@ from neuron import neuron
 import random as rd
 
 # initializes neurons and assigns ID, connections, weights, etc.
-def init_nrn(params):
+def init_nrn(params, seed):
     neurons = []  # List containing neuron objects
     nconn_Mat = [np.empty(3)]  # 2D matrix for storing new connections.
     numnrn = params.numnrn
 
     if params.RD_seed:  # When true, the simulation will be reproducable entirely (all connections, neuron assignments, initial coniditions).
-        rd.seed(params.seed)
+        # rd.seed(params.seed)
+        rd.seed(seed)
 
     def count_PV(neurons):  # A function for counting the number of SST neurons.
         count = 0

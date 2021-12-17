@@ -31,8 +31,9 @@ class parameter_parser():
         
         ## Engram Current params
         self.cfg.eng_num = 2
-        self.cfg.eng_starts = [100, 450]
-        self.cfg.eng_ends = [200, 550]
+        # self.cfg.eng_starts = [100, 450]
+        # self.cfg.eng_ends = [200, 550]
+
         self.cfg.eng_amps = [0.5, 0.5]
         
         self.cfg.spikeThreshold = 5 # Sets the voltage(mV) at which a spike is recorded.
@@ -48,7 +49,7 @@ class parameter_parser():
         
         # connections are formed.
         self.cfg.RD_seed = True # When true, a seed is used to generate connections
-        self.cfg.seed = 1 # The seed for generating random numbers/list indices. NOTE: defining a seed before a sequence of random events will
+        self.cfg.seed = [] # The seed for generating random numbers/list indices. NOTE: defining a seed before a sequence of random events will
         
         # not only define the outcome of the first random choice/event, but ALSO the following ones. So we only need one seed.
         self.cfg.Idrive_E_min, self.cfg.Idrive_E_max = 0.1, 0.1 # Applied current range for excitatory neurons.

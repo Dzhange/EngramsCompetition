@@ -1,20 +1,16 @@
-expt_name: "Fig5_Test_Longer_Bigger_Distant_P=0.5"
+expt_name: "Fig4_Test_Close"
 ex_amp: 0.3
-seed: 100
+seed: [100, 200, 300, 400, 500]
 base: -0.1
-numnrn: 100
-numPV: 20
-simLength: 2000
-
-title: "Large Network - Distant Engrams (50% Stimulus Application)"
+numnrn: 50
+simLength: 500
 
 eng_num: 2
 eng_amps: [0.5, 0.5]
-eng_starts: [400, 1400]
-eng_ends: [500, 1500]
+
 Idrive_PV_max: 0.0
 
-prob_engrams: [0.5, 0.5]
+prob_engrams: [1.0, 0.0]
 
 w_EE: 0.15
 w_II: 0.1

@@ -6,12 +6,12 @@ def updateExcitability(params, neurons, t_ind):
         if nrn.category == 'Excitatory':            
             nrn.Idrive = nrn.ex_amp * np.sin(nrn.ex_phase + 2*np.pi * nrn.ex_freq * t_ind * params.stepSize) + params.base
 
-def applyEngramCurrent(params, neurons, t_ind):
+def applyEngramCurrent(params, neurons, t_ind, eng_starts, eng_ends):
 
     assert params.eng_num == len(params.eng_amps)
 
     for eng_id in range(params.eng_num):
-        if params.eng_starts[eng_id] <= t_ind*params.stepSize < params.eng_ends[eng_id]:
+        if eng_starts[eng_id] <= t_ind*params.stepSize < eng_ends[eng_id]:
             for nrn in neurons:
                 if nrn.category == 'Excitatory' and nrn.use_engram[eng_id]:
                     nrn.Idrive = nrn.Idrive + params.eng_amps[eng_id]
@@ -42,4 +42,4 @@ def dotp_ortho(params, neurons, engram_starts, engram_ends):
     for i in range(len(engram_vecs)):
         engram_vecs[i] = engram_vecs[i] / np.sqrt(np.dot(engram_vecs[i], engram_vecs[i]))
 
-    print(np.dot(engram_vecs[0], engram_vecs[1]))  # Prints dotp result
+    return np.dot(engram_vecs[0], engram_vecs[1])  # Prints dotp result

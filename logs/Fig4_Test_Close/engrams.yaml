@@ -1,14 +1,13 @@
 expt_name: "Fig4_Test_Close"
 ex_amp: 0.3
-seed: 100
+seed: [100, 200, 300, 400, 500]
 base: -0.1
 numnrn: 50
 simLength: 500
 
 eng_num: 2
 eng_amps: [0.5, 0.5]
-eng_starts: [50, 175]
-eng_ends: [150, 275]
+
 Idrive_PV_max: 0.0
 
 prob_engrams: [1.0, 0.0]
