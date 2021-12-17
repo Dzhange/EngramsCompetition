@@ -36,6 +36,8 @@ def mainProgramLoop(params, neurons, nc_Matrix):
 
     apply_freq_plot(params, neurons, nc_Matrix)
     plot_conn_raster(params, neurons, nc_Matrix)
+    if params.eng_num == 2:
+        dotp_ortho(params, neurons, params.eng_starts, params.eng_ends)
     return
 
 

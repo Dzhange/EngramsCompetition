@@ -89,6 +89,8 @@ class parameter_parser():
         self.cfg.eng_color_list = ['purple', 'orange']
         self.cfg.overlap_color_list = ['green']
 
+        self.cfg.title = "<INSERT TITLE>"
+
 
     def check_cfg(self):
         pass

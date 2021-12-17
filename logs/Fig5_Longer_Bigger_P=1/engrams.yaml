@@ -1,14 +1,15 @@
-expt_name: "Fig4_Test_Close"
+expt_name: "Fig5_Longer_Bigger_P=1"
 ex_amp: 0.3
 seed: 100
 base: -0.1
-numnrn: 50
-simLength: 500
+numnrn: 100
+numPV: 20
+simLength: 2500
 
 eng_num: 2
 eng_amps: [0.5, 0.5]
-eng_starts: [50, 175]
-eng_ends: [150, 275]
+eng_starts: [500, 1700]
+eng_ends: [600, 1800]
 Idrive_PV_max: 0.0
 
 prob_engrams: [1.0, 0.0]

@@ -34,13 +34,13 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
                     Line2D([0], [0], color='blue', lw=4),
                     Line2D([0], [0], color='red', lw=4)]
 
-    # TODO: Uncomment for custom_lines_fig1 = [Line2D([0], [0], color='olive', lw=4),
+    # custom_lines_fig1 = [Line2D([0], [0], color='olive', lw=4),
     #                     Line2D([0], [0], color='blue', lw=4),
     #                     Line2D([0], [0], color='red', lw=4)]
 
     if plot_raster:  # Plots raster plot of neuron spikes. Ordered with inhibitory on the bottom, followed by sorted E neurons.
         fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(20, 10), sharex=True)
-        # TODO: Uncomment for fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(20, 5), sharex=True)
+        # fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(20, 5), sharex=True)
 
         start = start_time / stepSize  # time to start plotting from.
 
@@ -58,10 +58,10 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
             ax1.scatter((spikeTimes_toplot), index_plot_list, c=color,
                         s=10)  # c controls nrn dot color, s controls dot size.
 
-        ax1.set_title('No Engram Stimuli Active')
+        ax1.set_title(params.title)
         ax1.set_xlabel('Time (ms)')
         ax1.set_ylabel('Neurons Sorted by Group')
-        # TODO: Uncomment for initial - ax1.legend(custom_lines_fig1, ['Winners', 'Losers', 'Inhibitory'], loc='upper left')
+        # ax1.legend(custom_lines_fig1, ['engram', 'non-engram', 'inhibitory'], loc='upper left')
         ax1.legend(custom_lines, ['engram 1', 'engram 2', 'engram 1&2', 'non-engram', 'inhibitory'], loc='upper left')
 
         for i in range(len(params.ex_phases)):
@@ -138,9 +138,6 @@ def apply_freq_plot(params, neurons, nc_Matrix): # Runs frequency calculation an
             nrn.color = 'blue'
     
     freq_threshold = 40 #Threshold of neuron frequency to be considered part of an engram (in Hz).
-    
-    # eng_color_list = ['purple', 'orange']
-    # overlap_color_list = ['green']
 
     eng_color_list = params.eng_color_list
     overlap_color_list = params.overlap_color_list
