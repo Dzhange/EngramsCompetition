@@ -1,10 +1,15 @@
 # EngramsCompetition
 MATH 568 Course Project
 
+## How to start
+
+Simply run 
+`python main.py -c engrams.yaml`
+
 
 ## About Experiment logging
 
-Ge: I guess in the very near future we will need to do a bunch of experiments with different parameters, so I wrote a simple parameter parser to help us record each experiment's setting and results, it basically has 3 parts:
+A simple parameter parser to help  record each experiment's setting and results, it basically has 3 parts:
 
 1. `parameter_parser.py` script, all default parameters are stored in it. It was called in the main script and returns a parameter set. We should try to avoid directly change parameters in this file, instead we could use configuration files as below.
 2. `configs` folder contains all the experiment configuration files. Only parameters different from default need to be written in the config file(You might feel like to change the 'expt_name' in each config file). You could check the `example.yaml` for reference.
