@@ -49,34 +49,63 @@ if __name__ == "__main__":
     parser = parameter_parser()
     params = parser.get_cfg()
 
-    eng_starts = [50, 175]
-    eng_ends = [150, 275]
+    means = np.zeros(4)
+    std = np.zeros(4)
 
-    close = 0
-    for seed in params.seed:
-        neurons, nc_Matrix = init_nrn(params, seed)
+    temp_list = np.zeros(5)
 
-        # Run Program
-        close += mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
-    close /= len(params.seed)
+    prob_engrams = [1.0, 0.0]
 
-    eng_starts = [100, 350]
-    eng_ends = [200, 450]
+    eng_starts = [250, 450]
+    eng_ends = [350, 550]
 
-    distant = 0
-    for seed in params.seed:
-        neurons, nc_Matrix = init_nrn(params, seed)
+
+    for i, seed in enumerate(params.seed):
+        neurons, nc_Matrix = init_nrn(params, seed, prob_engrams)
 
         # Run Program
-        distant += mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
-    distant /= len(params.seed)
+        temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
+    means[0] = np.mean(temp_list)
+    std[0] = np.std(temp_list)
 
-    x = ['Close', 'Distant']
-    y = [close, distant]
-    plt.bar(x, y)
-    plt.title('Mean Orthogonality over 5 seeds')
-    plt.xlabel('Temporal Separation between Engrams')
-    plt.ylabel('Orthogonality Measure')
-    plt.savefig('bar_chart_ortho.png')
+    eng_starts = [400, 1400]
+    eng_ends = [500, 1500]
+
+    for i, seed in enumerate(params.seed):
+        neurons, nc_Matrix = init_nrn(params, seed, prob_engrams)
+
+        # Run Program
+        temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
+    means[1] = np.mean(temp_list)
+    std[1] = np.std(temp_list)
+
+    prob_engrams = [0.5, 0.5]
+
+    for i, seed in enumerate(params.seed):
+        neurons, nc_Matrix = init_nrn(params, seed, prob_engrams)
+
+        # Run Program
+        temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
+    means[2] = np.mean(temp_list)
+    std[2] = np.std(temp_list)
+
+    eng_starts = [250, 450]
+    eng_ends = [350, 550]
+
+    for i, seed in enumerate(params.seed):
+        neurons, nc_Matrix = init_nrn(params, seed, prob_engrams)
+
+        # Run Program
+        temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
+    means[3] = np.mean(temp_list)
+    std[3] = np.std(temp_list)
+
+    fig, ax = plt.subplots()
+    x = ['Close (100%)', 'Distant (100%)', 'Close (50%)', 'Distant (50%)']
+    ax.bar(x, means, yerr=[np.zeros(4), std], capsize=7)
+    ax.set_title('Mean Orthogonality over 5 seeds - Large Simulation')
+    ax.set_xlabel('Temporal Separation between Engrams (% Selection)')
+    ax.set_ylabel('Orthogonality Measure')
+    plt.savefig('bar_chart_ortho_large.png')
 
 

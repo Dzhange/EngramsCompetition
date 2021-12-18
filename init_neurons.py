@@ -5,7 +5,7 @@ from neuron import neuron
 import random as rd
 
 # initializes neurons and assigns ID, connections, weights, etc.
-def init_nrn(params, seed):
+def init_nrn(params, seed, prob_engrams):
     neurons = []  # List containing neuron objects
     nconn_Mat = [np.empty(3)]  # 2D matrix for storing new connections.
     numnrn = params.numnrn
@@ -59,7 +59,7 @@ def init_nrn(params, seed):
                 # nrn.ex_phase = 2*np.pi*rd.uniform(0, 1)
                 nrn.color = 'blue'
                 # Randomly assign engram inclusion to each neuron
-                nrn.use_engram = np.random.choice([True, False], 2, p=params.prob_engrams)
+                nrn.use_engram = np.random.choice([True, False], 2, p=prob_engrams)
             else:
                 if params.random_activate:
                     if rd.random() <= params.activate_rate:
