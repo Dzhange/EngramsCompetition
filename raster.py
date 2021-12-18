@@ -39,8 +39,8 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
     #                     Line2D([0], [0], color='red', lw=4)]
 
     if plot_raster:  # Plots raster plot of neuron spikes. Ordered with inhibitory on the bottom, followed by sorted E neurons.
-        fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(20, 10), sharex=True)
-        # fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(20, 5), sharex=True)
+        # fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(20, 10), sharex=True)
+        fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(20, 5), sharex=True)
 
         start = start_time / stepSize  # time to start plotting from.
 
@@ -64,22 +64,22 @@ def plot_conn_raster(params, neurons, nc_Matrix):  # Plots raster plot and conne
         # ax1.legend(custom_lines_fig1, ['engram', 'non-engram', 'inhibitory'], loc='upper left')
         ax1.legend(custom_lines, ['engram 1', 'engram 2', 'engram 1&2', 'non-engram', 'inhibitory'], loc='upper left')
 
-        for i in range(len(params.ex_phases)):
-            x = np.linspace(0, params.simLength, int(params.simLength/params.stepSize))
-            y = params.ex_amp * np.sin(params.ex_phases[i] + 2 * np.pi * params.ex_freq * x) + params.base
-            ax2.plot(x, y, color=params.eng_color_list[i])
-
-        ax2.set_title('Neuron Excitability')
-        ax2.set_xlabel('Time (ms)')
-        ax2.set_ylabel('Neuron Intrinsic $I_{drive}$')
+        # for i in range(len(params.ex_phases)):
+        #     x = np.linspace(0, params.simLength, int(params.simLength/params.stepSize))
+        #     y = params.ex_amp * np.sin(params.ex_phases[i] + 2 * np.pi * params.ex_freq * x) + params.base
+        #     ax2.plot(x, y, color=params.eng_color_list[i])
+        #
+        # ax2.set_title('Neuron Excitability')
+        # ax2.set_xlabel('Time (ms)')
+        # ax2.set_ylabel('Neuron Intrinsic $I_{drive}$')
 
         eng_color_list = params.eng_color_list
         overlap_color_list = params.overlap_color_list
 
-        for eng_id in range(params.eng_num):
-            if params.eng_amps[eng_id] > 0.0:
-                plt.axvline(x=params.eng_starts[eng_id], color=eng_color_list[eng_id])
-                plt.axvline(x=params.eng_ends[eng_id], color=eng_color_list[eng_id])
+        # for eng_id in range(params.eng_num):
+        #     if params.eng_amps[eng_id] > 0.0:
+        #         plt.axvline(x=params.eng_starts[eng_id], color=eng_color_list[eng_id])
+        #         plt.axvline(x=params.eng_ends[eng_id], color=eng_color_list[eng_id])
 
         img_path = os.path.join(params.expt_file_path, "{}_raster.png".format(params.expt_name))
         plt.savefig(img_path)

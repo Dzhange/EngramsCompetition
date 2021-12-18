@@ -4,14 +4,14 @@ seed: 100
 base: -0.1
 numnrn: 100
 numPV: 20
-simLength: 2000
+simLength: 400
 
-title: "Large Network - Distant Engrams (50% Stimulus Application)"
+title: "Large Network - Close Engrams (100% Stimulus Application)"
 
 eng_num: 2
 eng_amps: [0.5, 0.5]
-eng_starts: [400, 1400]
-eng_ends: [500, 1500]
+eng_starts: [100, 100]
+eng_ends: [200, 200]
 Idrive_PV_max: 0.0
 
 prob_engrams: [0.5, 0.5]
