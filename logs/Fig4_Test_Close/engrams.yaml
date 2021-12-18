@@ -1,10 +1,10 @@
 expt_name: "Fig4_Test_Close"
 ex_amp: 0.3
-seed: [100, 200]
+seed: [32, 45, 92, 71, 67]
 base: -0.1
-numnrn: 30
-numPV: 6
-simLength: 200
+numnrn: 100
+numPV: 20
+simLength: 2000
 
 eng_num: 2
 eng_amps: [0.5, 0.5]
