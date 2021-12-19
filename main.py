@@ -59,7 +59,6 @@ if __name__ == "__main__":
     eng_starts = [250, 450]
     eng_ends = [350, 550]
 
-
     for i, seed in enumerate(params.seed):
         neurons, nc_Matrix = init_nrn(params, seed, prob_engrams)
 
@@ -67,6 +66,7 @@ if __name__ == "__main__":
         temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
     means[0] = np.mean(temp_list)
     std[0] = np.std(temp_list)
+
 
     eng_starts = [400, 1400]
     eng_ends = [500, 1500]
@@ -79,15 +79,8 @@ if __name__ == "__main__":
     means[1] = np.mean(temp_list)
     std[1] = np.std(temp_list)
 
+
     prob_engrams = [0.5, 0.5]
-
-    for i, seed in enumerate(params.seed):
-        neurons, nc_Matrix = init_nrn(params, seed, prob_engrams)
-
-        # Run Program
-        temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
-    means[2] = np.mean(temp_list)
-    std[2] = np.std(temp_list)
 
     eng_starts = [250, 450]
     eng_ends = [350, 550]
@@ -97,8 +90,22 @@ if __name__ == "__main__":
 
         # Run Program
         temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
+    means[2] = np.mean(temp_list)
+    std[2] = np.std(temp_list)
+
+
+    eng_starts = [400, 1400]
+    eng_ends = [500, 1500]
+
+    for i, seed in enumerate(params.seed):
+        neurons, nc_Matrix = init_nrn(params, seed, prob_engrams)
+
+        # Run Program
+        temp_list[i] = mainProgramLoop(params, neurons, nc_Matrix, eng_starts, eng_ends)
     means[3] = np.mean(temp_list)
     std[3] = np.std(temp_list)
+
+
 
     fig, ax = plt.subplots()
     x = ['Close (100%)', 'Distant (100%)', 'Close (50%)', 'Distant (50%)']
